@@ -57,7 +57,6 @@ def buku_perpus(daftar):
         print(f'''
     | {daftar['ID'][n]}  | {daftar['Stok'][n]}\t| {daftar['Judul'][n]}\t
         \t  {daftar['Pengarang'][n]}, {daftar['Tahun Terbit'][n]}
-        \t  Rating: {daftar['Rating'][n]}/5
     ''', end='')
 
 # Mengeluarkan Database untuk 1 index
@@ -72,7 +71,6 @@ def cari_1(daftar, input):
     print(f'''
     | {daftar['ID'][n]}  | {daftar['Stok'][n]}\t| {daftar['Judul'][n]}\t
         \t  {daftar['Pengarang'][n]}, {daftar['Tahun Terbit'][n]}
-        \t  Rating: {daftar['Rating'][n]}/5
     ''', end='')
     return n
 
@@ -82,17 +80,15 @@ def cari_1(daftar, input):
 # 'Judul':[],
 # 'Pengarang':[],
 # 'Tahun Terbit':[],
-# 'Rating':[],
 # }
 
 # Database Buku Perpus
 daftar_buku_perpus = {
 'ID':['1','2','3'],
-'Stok':[2,3,4],
+'Stok':['2','3','4'],
 'Judul':['Atomic Habits', 'The Little Book That Still Beats the Market', 'Rage'],
 'Pengarang':['James Clear', 'Joel Greenblatt', 'Stephen King'],
-'Tahun Terbit':[2018, 2010, 1977],
-'Rating':['4.5', '4', '5'],
+'Tahun Terbit':['2018', '2010', '1977']
 }
 
 # Helper Function
@@ -119,7 +115,7 @@ def cek_pilihan(banyak_pilihan):
         n_pilihan.append(str(n))
     while pilihan not in n_pilihan:
         print('Masukkan pilihan yang tersedia\n')
-        pilihan = (input('Masukan pilihan yang tersedia'))      
+        pilihan = (input('Masukan pilihan yang tersedia :'))      
     return pilihan
 
 # Menu 1 : Daftar Buku Pustaka
@@ -149,7 +145,7 @@ def menu_1(daftar):
             print('Tidak Ada Data')
             menu_1(daftar)
 
-        input_id = cek_numeric('Masukan ID buku yang ingin abda lihat: \n')    
+        input_id = cek_numeric('Masukan ID buku yang ingin anda lihat: \n')    
 
         if input_id not in daftar['ID']:
             print('Tidak Ada Data')
@@ -189,7 +185,6 @@ def menu_2(daftar):
             input_judul = input('Masukan judul buku : ')
             input_pengarang = input('Masukan nama pengarang : ')
             input_tahun = cek_numeric('Masukan tahun terbit : ')
-            input_rating = cek_numeric('Masukan rating buku : ')
             yakin = yakinkah()
             if yakin =='n':
                 menu_2(daftar)
@@ -200,7 +195,6 @@ def menu_2(daftar):
                 daftar['Judul'].append(input_judul)
                 daftar['Pengarang'].append(input_pengarang)
                 daftar['Tahun Terbit'].append(input_tahun)
-                daftar['Rating'].append(input_rating)
                 print('---Data Tersimpan---')
                 menu_2(daftar)
 
@@ -240,13 +234,12 @@ def menu_3(daftar):
                     1. Stok
                     2. Judul
                     3. Pengarang
-                    4. Tahun Terbit
-                    5. Rating''')
+                    4. Tahun Terbit''')
                     
                 pilihan = cek_pilihan(5)
 
                 pilihan = int(pilihan)
-                opsi = ["Stok", "Judul", "Pengarang", "Tahun Terbit", "Rating"] 
+                opsi = ["Stok", "Judul", "Pengarang", "Tahun Terbit"] 
                 if pilihan in [1,4,5]:                                      
                     input_baru = cek_numeric(f'Masukan {opsi[pilihan-1]} baru : ')
                 else:                 
@@ -283,36 +276,32 @@ def menu_4(daftar):
     pilihan = cek_pilihan(2)
     
     if pilihan == '1':
-        yakin = yakinkah()
-        if yakin =='n':
-            menu_4(daftar)
-        elif yakin =='y':
-            input_id = cek_numeric('Masukan ID Buku yang datanya ingin dihapus :')
+
+        input_id = cek_numeric('Masukan ID Buku yang datanya ingin dihapus :')
             
-            if input_id not in daftar['ID']:
-                print('\nData yang anda cari tidak ada')
+        if input_id not in daftar['ID']:
+            print('\nData yang anda cari tidak ada')
+            menu_4(daftar)
+
+        elif input_id in daftar['ID']:
+            indeks = cari_1(daftar,input_id)
+
+            yakin = yakinkah()
+
+            if yakin == 'n':
                 menu_4(daftar)
-
-            elif input_id in daftar['ID']:
-                indeks = cari_1(daftar,input_id)
-
-                yakin = yakinkah()
-
-                if yakin == 'n':
-                    menu_4(daftar)
-                elif yakin =='y':
-                    daftar['ID'].pop(indeks)
-                    daftar['Stok'].pop(indeks)
-                    daftar['Judul'].pop(indeks)
-                    daftar['Pengarang'].pop(indeks)
-                    daftar['Tahun Terbit'].pop(indeks)
-                    print('Data telah dihapus!')
-                    buku_perpus(daftar_buku_perpus)
-                    menu_4(daftar)
+            elif yakin =='y':
+                daftar['ID'].pop(indeks)
+                daftar['Stok'].pop(indeks)
+                daftar['Judul'].pop(indeks)
+                daftar['Pengarang'].pop(indeks)
+                daftar['Tahun Terbit'].pop(indeks)
+                print('Data telah dihapus!')
+                buku_perpus(daftar_buku_perpus)
+                menu_4(daftar)
+                
     elif pilihan == '2':
         yakin = yakinkah()
         menu_utama()
     
 menu_utama()
-
-
