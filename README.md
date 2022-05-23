@@ -1,2 +1,2 @@
 # JCDS-CapstoneProject-Module1-Perpustakaan
-This repo contain python project about simple library admin apps
+This repo was made for assignment. It's about simple apps for library admin with python basic functions.
