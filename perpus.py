@@ -44,7 +44,26 @@ def menu_utama():
         elif yakin =='n':
             print('Pilihan yg anda masukkan salah')
             menu_utama()
-            
+
+# Database Buku Perpus
+daftar_buku_perpus = {
+'ID':['1','2','3'],
+'Stok':['2','3','4'],
+'Judul':['Atomic Habits', 'The Little Book That Still Beats the Market', 'Rage'],
+'Pengarang':['James Clear', 'Joel Greenblatt', 'Stephen King'],
+'Tahun Terbit':['2018', '2010', '1977']
+}
+
+# daftar_buku_perpus = {
+# 'ID':[],
+# 'Stok':[],
+# 'Judul':[],
+# 'Pengarang':[],
+# 'Tahun Terbit':[],
+# }
+
+# Helper Function
+
 # Menampilkan Database Perpus dalam Tabel
 def buku_perpus(daftar):
     print('''
@@ -74,24 +93,6 @@ def cari_1(daftar, input):
     ''', end='')
     return n
 
-# daftar_buku_perpus = {
-# 'ID':[],
-# 'Stok':[],
-# 'Judul':[],
-# 'Pengarang':[],
-# 'Tahun Terbit':[],
-# }
-
-# Database Buku Perpus
-daftar_buku_perpus = {
-'ID':['1','2','3'],
-'Stok':['2','3','4'],
-'Judul':['Atomic Habits', 'The Little Book That Still Beats the Market', 'Rage'],
-'Pengarang':['James Clear', 'Joel Greenblatt', 'Stephen King'],
-'Tahun Terbit':['2018', '2010', '1977']
-}
-
-# Helper Function
 def yakinkah():
     yakinkah = input('Apakah anda yakin? (Y/N)')
     while (yakinkah != 'y') and (yakinkah != 'n'):
