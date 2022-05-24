@@ -42,25 +42,24 @@ def menu_utama():
         if yakin == 'y':
             quit()
         elif yakin =='n':
-            print('Pilihan yg anda masukkan salah')
             menu_utama()
 
 # Database Buku Perpus
-daftar_buku_perpus = {
-'ID':['1','2','3'],
-'Stok':['2','3','4'],
-'Judul':['Atomic Habits', 'The Little Book That Still Beats the Market', 'Rage'],
-'Pengarang':['James Clear', 'Joel Greenblatt', 'Stephen King'],
-'Tahun Terbit':['2018', '2010', '1977']
-}
-
 # daftar_buku_perpus = {
-# 'ID':[],
-# 'Stok':[],
-# 'Judul':[],
-# 'Pengarang':[],
-# 'Tahun Terbit':[],
+# 'ID':['1','2','3'],
+# 'Stok':['2','3','4'],
+# 'Judul':['Atomic Habits', 'The Little Book That Still Beats the Market', 'Rage'],
+# 'Pengarang':['James Clear', 'Joel Greenblatt', 'Stephen King'],
+# 'Tahun Terbit':['2018', '2010', '1977']
 # }
+
+daftar_buku_perpus = {
+'ID':[],
+'Stok':[],
+'Judul':[],
+'Pengarang':[],
+'Tahun Terbit':[],
+}
 
 # Helper Function
 
@@ -241,7 +240,7 @@ def menu_3(daftar):
 
                 pilihan = int(pilihan)
                 opsi = ["Stok", "Judul", "Pengarang", "Tahun Terbit"] 
-                if pilihan in [1,4,5]:                                      
+                if pilihan in [1,4]:                                      
                     input_baru = cek_numeric(f'Masukan {opsi[pilihan-1]} baru : ')
                 else:                 
                     input_baru = input(f'Masukan {opsi[pilihan-1]} baru : ')                        
